@@ -46,11 +46,11 @@ public class UserController {
     public  ResponseEntity<UserDto> getUserById(@PathVariable Integer userID){
         return ResponseEntity.ok(this.userService.getUserBYiD(userID));
     }
+    //3:17:1
 
 
 
-    //get
-    //getbyId
+
 
 
 }
