@@ -6,19 +6,19 @@ import com.pythonbot.blog.blog_app_api.payloads.PostDto;
 import java.util.List;
 
 public interface PostService {
-    Post createpost(PostDto postDto);
+    PostDto createpost(PostDto postDto, Integer userId, Integer categoryId);
 
-    Post updatePost( PostDto postDto,Integer postId );
+    PostDto updatePost( PostDto postDto,Integer postId );
 
     void deletePost(Integer postId);
 
-    List<Post> getAllPost();
+    List<PostDto> getAllPost();
 
-    Post getPostById(Integer postId);
+    PostDto getPostById(Integer postId);
 
-    List<Post> getPostByCategory(Integer categoryId);
+    List<PostDto> getPostByCategory(Integer categoryId);
 
-    List<Post> getPostByUser(Integer userId);
+    List<PostDto> getPostByUser(Integer userId);
 
-    List<Post> searchPosts(String keyword);
+    List<PostDto> searchPosts(String keyword);
 }
