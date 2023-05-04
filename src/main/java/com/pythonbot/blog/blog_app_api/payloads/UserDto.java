@@ -1,9 +1,17 @@
 package com.pythonbot.blog.blog_app_api.payloads;
 
+import com.pythonbot.blog.blog_app_api.entities.Post;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @NoArgsConstructor
 @Getter
@@ -21,5 +29,6 @@ public class UserDto {
     private String password;
     @NotEmpty(message = "About can not be blank")
     private String about;
+
 
 }
