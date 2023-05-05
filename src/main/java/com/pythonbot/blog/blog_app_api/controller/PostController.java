@@ -2,6 +2,7 @@ package com.pythonbot.blog.blog_app_api.controller;
 
 import com.pythonbot.blog.blog_app_api.entities.Post;
 import com.pythonbot.blog.blog_app_api.payloads.PostDto;
+import com.pythonbot.blog.blog_app_api.response.ApiResponse;
 import com.pythonbot.blog.blog_app_api.services.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -45,6 +46,19 @@ public class PostController {
     public ResponseEntity<PostDto> getPost(@PathVariable Integer postsId){
         PostDto postDto= this.postService.getPostById(postsId);
         return  new ResponseEntity<>(postDto,HttpStatus.OK);
+    }
+
+    //delete Post
+    @DeleteMapping("posts/{postId}")
+    public ApiResponse deletePost( @PathVariable Integer postId ){
+        this.postService.deletePost(postId);
+        return  new ApiResponse("Post Deleted SucessFully",true );
+    }
+
+    @PutMapping("posts/{postId}")
+    public ResponseEntity<PostDto> updatePost(@RequestBody PostDto postDto, @PathVariable Integer postId ){
+        PostDto postDto1= this.postService.updatePost(postDto,postId);
+        return new ResponseEntity<>(postDto1, HttpStatus.OK);
     }
 
 }
