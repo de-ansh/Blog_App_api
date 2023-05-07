@@ -12,6 +12,9 @@ import com.pythonbot.blog.blog_app_api.repository.UserRepo;
 import com.pythonbot.blog.blog_app_api.services.PostService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -64,7 +67,11 @@ public class PostServiceImpl implements PostService {
 
     @Override
     public List<PostDto> getAllPost() {
-        List<Post> postList= this.postRepo.findAll();
+        int pageSize=5;
+        int pageNumber=1;
+        Pageable p = PageRequest.of(pageNumber,pageSize);
+        Page<Post> postPage= this.postRepo.findAll(p);
+        List<Post> postList= postPage.getContent();
         List<PostDto> postDtoList= postList.stream().map((post)->this.modelMapper.map(post, PostDto.class)).collect(Collectors.toList());
         return  postDtoList;
 
@@ -96,6 +103,7 @@ public class PostServiceImpl implements PostService {
 
     @Override
     public List<PostDto> searchPosts(String keyword) {
+
         return null;
     }
 }
